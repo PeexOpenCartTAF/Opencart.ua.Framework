@@ -1,0 +1,17 @@
+﻿{
+  "users": {
+    "success_user": {
+      "first_name": "TestYura",
+      "last_name": "TestYuraLast",
+      "email": "y.ivanytsky@gmail.com",
+      "password": "123qweAS$%"
+    },
+    "wrong_user": {
+      "first_name": "TestWrongUserName",
+      "last_name": "TestWrongUserLastName",
+      "email": "wrong@gmail.com",
+      "password": "123wrongAS$%"
+    }
+  }
+
+}
