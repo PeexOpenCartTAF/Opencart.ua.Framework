@@ -46,7 +46,6 @@ namespace Opencart.ua.Tests
                     Assert.That(password.Equals("123wrongAS$%"));
                     Assert.That(!loginPage.IsUserLoggedIn());
                     OpenCartSeriLog.Info("###### ALERT MESSAGE: " + loginPage.LoginErrorAlertMessage);
-                    OpenCartSeriLog.Info("###### ALERT MESSAGE: TEST push to branch" + loginPage.LoginErrorAlertMessage);
                     break;
                 case string success when success.Contains("ivanytsky"):
                     Assert.That(email.Equals("y.ivanytsky@gmail.com"));
