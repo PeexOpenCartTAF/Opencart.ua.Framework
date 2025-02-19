@@ -56,5 +56,10 @@ namespace Opencart.ua.Tests
             
         }
 
+        public void CheckAlertMessage(string email, string password)
+        {
+            
+        }
+
     }
 }
