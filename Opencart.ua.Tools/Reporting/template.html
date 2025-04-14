@@ -1,0 +1,51 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Report</title>
+    <style>
+        body {
+            font-family: Arial;
+            margin: 20px;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .passed {
+            background-color: #d4edda;
+        }
+
+        .failed {
+            background-color: #f8d7da;
+        }
+
+        .skipped {
+            background-color: #fff3cd;
+        }
+    </style>
+</head>
+<body>
+    <h2>Automated Test Report</h2>
+    <table>
+        <tr>
+            <th>Test</th>
+            <th>Status</th>
+            <th>Duration</th>
+            <th>Error</th>
+        </tr>
+        {{rows}}
+    </table>
+</body>
+</html>

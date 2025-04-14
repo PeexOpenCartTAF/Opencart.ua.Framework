@@ -24,6 +24,7 @@ namespace Opencart.ua.Tests
         [SetUp]
         public void Setup()
         {
+            StartTimer();
             OpenCartSeriLog.Info("Opening Login page");
             loginPage.NavigateTo(loginPageUrl);
         }
@@ -75,6 +76,12 @@ namespace Opencart.ua.Tests
         {
             loginPage.EnterCredsAndLogin(email, password);
             Assert.That(loginPage.LoginErrorAlertMessage, Is.EqualTo(expectedMessage));
+        }
+
+        [TearDown]
+        public void TearDown()
+        {
+            CollectResults();
         }
 
     }

@@ -8,6 +8,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Include="Reporting\template.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="log4net" Version="3.0.2" />
     <PackageReference Include="NUnit" Version="4.2.2" />
     <PackageReference Include="Selenium.Support" Version="4.22.0" />
