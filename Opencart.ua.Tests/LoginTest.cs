@@ -1,4 +1,4 @@
-﻿using LogicPower.ua.Data;
+﻿using Opencart.ua.Data;
 using NUnit.Framework;
 using Opencart.ua.PageObjects.Pages.AccountPages;
 using Opencart.ua.Tools.Helpers;
@@ -7,6 +7,7 @@ using Opencart.ua.Tools.LogsHelpers;
 namespace Opencart.ua.Tests
 {
     [TestFixture]
+    //[Parallelizable(ParallelScope.All)]
     public class LoginTest : BaseTest
     {
         private LoginPage loginPage;
@@ -27,38 +28,53 @@ namespace Opencart.ua.Tests
             loginPage.NavigateTo(loginPageUrl);
         }
 
-        private static IEnumerable<object[]> LoginData => new[]{
-            new object[] { JsonData.GetJsonData().Users.SuccessUser.Email, JsonData.GetJsonData().Users.SuccessUser.Password },
-            new object[] { JsonData.GetJsonData().Users.WrongUser.Email, JsonData.GetJsonData().Users.WrongUser.Password }
+        private static IEnumerable<object[]> LoginData => new[]
+        {
+            new object[] 
+            { 
+                JsonData.GetJsonData().Users.SuccessUser.Email, 
+                JsonData.GetJsonData().Users.SuccessUser.Password 
+            },
+            new object[] 
+            { 
+                JsonData.GetJsonData().Users.WrongUser.Email, 
+                JsonData.GetJsonData().Users.WrongUser.Password 
+            }
         };
 
-        [TestCaseSource(nameof(LoginData)), Order(1)]
-        public void Login(string email, string password)
+        [TestCaseSource(nameof(LoginData)), Order(2)]
+        public void CheckLogin(string email, string password)
         {
             loginPage.EnterCredsAndLogin(email, password);
 
-            OpenCartSeriLog.Info($"Input Data: user={email} pass={password}");
             Thread.Sleep(5000);
             switch (email)
             {
                 case string wrong when wrong.Contains("wrong"):
-                    Assert.That(email.Equals("wrong@gmail.com"));
-                    Assert.That(password.Equals("123wrongAS$%"));
                     Assert.That(!loginPage.IsUserLoggedIn());
-                    OpenCartSeriLog.Info("###### ALERT MESSAGE: " + loginPage.LoginErrorAlertMessage);
                     break;
                 case string success when success.Contains("ivanytsky"):
-                    Assert.That(email.Equals("y.ivanytsky@gmail.com"));
-                    Assert.That(password.Equals("123qweAS$%"));
                     Assert.That(loginPage.IsUserLoggedIn());
                     break;
             }
-            
+
         }
 
-        public void CheckAlertMessage(string email, string password)
+        private static IEnumerable<object[]> WrongUserData => new[]
         {
-            
+            new object[]
+            {
+                JsonData.GetJsonData().Users.WrongUser.Email,
+                JsonData.GetJsonData().Users.WrongUser.Password,
+                "Warning: No match for E-Mail Address and/or Password."
+            }
+        };
+
+        [TestCaseSource(nameof(WrongUserData)), Order(1)]
+        public void CheckAlertMessage(string email, string password, string expectedMessage)
+        {
+            loginPage.EnterCredsAndLogin(email, password);
+            Assert.That(loginPage.LoginErrorAlertMessage, Is.EqualTo(expectedMessage));
         }
 
     }

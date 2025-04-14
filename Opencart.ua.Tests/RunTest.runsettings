@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RunSettings>
+  <RunConfiguration>
+    <MaxCpuCount>4</MaxCpuCount>
+    <TargetPlatform>x64</TargetPlatform>
+    <TargetFrameworkVersion>net48</TargetFrameworkVersion>
+    <Verbosity>normal</Verbosity>
+    <TestSessionTimeout>300000</TestSessionTimeout>
+    <CollectSourceInformation>false</CollectSourceInformation>
+  </RunConfiguration>
+
+  <NUnit>
+    <NumberOfTestWorkers>4</NumberOfTestWorkers>
+    <DefaultTimeout>60000</DefaultTimeout>
+  </NUnit>
+</RunSettings>
