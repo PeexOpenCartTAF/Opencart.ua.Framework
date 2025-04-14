@@ -4,6 +4,7 @@ using Opencart.ua.Tools.Driver;
 namespace Opencart.ua.Tests
 {
     [SetUpFixture]
+    [Parallelizable(ParallelScope.All)]
     public class BaseTest
     {
 

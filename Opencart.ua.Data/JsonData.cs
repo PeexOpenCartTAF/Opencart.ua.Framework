@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace LogicPower.ua.Data
+namespace Opencart.ua.Data
 {
     public class User
     {
