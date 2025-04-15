@@ -5,6 +5,14 @@
     <LangVersion>latest</LangVersion>
     <ImplicitUsings>enable</ImplicitUsings>
     <OutputType>Library</OutputType>
+
+    <!-- NuGet package metadata --><!--
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageId>OpenCart.ua.Tools</PackageId>
+    <Version>1.0.0</Version>
+    <Authors>Yurii Ivanytskyi</Authors>
+    <Company>SoftServe</Company>
+    <Description>Core tools for OpenCart automation: WebDriver, logging, reporting, helpers.</Description>-->
   </PropertyGroup>
 
   <ItemGroup>
