@@ -17,7 +17,7 @@ namespace Opencart.ua.Tools.ScreenshotHelpers
             {
                 IWebDriver driver = WebDriverInstance.GetDriver();
                 Screenshot screenshot = ((ITakesScreenshot)driver).GetScreenshot();
-                string path = Path.Combine(Directory.GetCurrentDirectory(), "Reporting");
+                string path = Path.Combine(Directory.GetCurrentDirectory(), "Reporting\\Screenshots");
                 string testName = TestContext.CurrentContext.Test.MethodName;
                 Directory.CreateDirectory(path);
                 var filePath = Path.Combine(path, $"{testName}_{DateTime.Now:yyyy-MM-dd_HH-mm-ss}.png");
