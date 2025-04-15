@@ -11,7 +11,7 @@ namespace Opencart.ua.Tests
     {
         
         protected IWebDriverWrapper driver;
-        protected static List<TestResult> results = new List<TestResult>();
+        protected static List<TestResult> results = new();
         protected Stopwatch stopwatch;
 
         [OneTimeSetUp]

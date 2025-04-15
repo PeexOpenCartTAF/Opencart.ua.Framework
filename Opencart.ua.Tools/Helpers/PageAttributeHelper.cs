@@ -1,4 +1,5 @@
 ﻿using Opencart.ua.Tools.LogsHelpers;
+using System.Configuration;
 
 namespace Opencart.ua.Tools.Helpers
 {
@@ -19,7 +20,7 @@ namespace Opencart.ua.Tools.Helpers
         {
             OpenCartSeriLog.Info("Getiing URL from page attribute");
             var urlAttribute = (UrlAttribute)Attribute.GetCustomAttribute(typeof(T), typeof(UrlAttribute));
-            return urlAttribute?.Url;
+            return ConfigurationManager.AppSettings["BaseUrl"] + urlAttribute?.Url;
         }
     }
 }
