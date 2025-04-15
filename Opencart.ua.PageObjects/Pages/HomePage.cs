@@ -6,7 +6,7 @@ using OpenQA.Selenium;
 
 namespace Opencart.ua.PageObjects.Pages
 {
-    [Url("https://demo.opencart.com/")]
+    [Url("/en-gb?route=common/home")]
     public class HomePage : BasePage
     {
         private readonly IHeaderComponents header;

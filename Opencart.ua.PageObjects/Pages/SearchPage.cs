@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Opencart.ua.PageObjects.Pages
 {
-    [Url("https://demo.opencart.com/en-gb?route=product/search")]
+    [Url("/en-gb?route=product/search")]
     public class SearchPage : BasePage
     {
         private readonly IHeaderComponents _header;
