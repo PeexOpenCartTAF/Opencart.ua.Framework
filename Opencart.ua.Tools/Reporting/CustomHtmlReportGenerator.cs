@@ -17,6 +17,7 @@ namespace Opencart.ua.Tools.Reporting
                         <td>{r.Status}</td>
                         <td>{r.Duration:F2}</td>
                         <td>{r.ErrorMessage}</td>
+                        <td><a href={r.ScreenshotPath}>Screenshot</a></td>
                     </tr>");
             }
 

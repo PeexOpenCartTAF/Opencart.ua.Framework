@@ -1,6 +1,8 @@
 ﻿using NUnit.Framework;
+using NUnit.Framework.Interfaces;
 using Opencart.ua.Tools.Driver;
 using Opencart.ua.Tools.Reporting;
+using Opencart.ua.Tools.ScreenshotHelpers;
 using System.Diagnostics;
 
 namespace Opencart.ua.Tests
@@ -27,6 +29,7 @@ namespace Opencart.ua.Tests
 
         protected void CollectResults()
         {
+            string screenshotPath = TakeScreenshotHelper.TakeScreenshot();
             stopwatch.Stop();
             var context = TestContext.CurrentContext;
             results.Add(new TestResult
@@ -34,7 +37,8 @@ namespace Opencart.ua.Tests
                 TestName = context.Test.Name,
                 Status = context.Result.Outcome.Status.ToString(),
                 Duration = stopwatch.Elapsed.TotalMilliseconds,
-                ErrorMessage = context.Result.FailCount > 0 ? context.Result.Message : ""
+                ErrorMessage = context.Result.FailCount > 0 ? context.Result.Message : "",
+                ScreenshotPath = screenshotPath
             });
             
         }
