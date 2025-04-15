@@ -8,5 +8,6 @@ namespace Opencart.ua.Tools.Reporting
         public string Status { get; set; }
         public double Duration { get; set; }
         public string ErrorMessage { get; set; }
+        public string ScreenshotPath { get; set; }
     }
 }
