@@ -35,9 +35,9 @@
     <Message Text="Copying log files to solution root..." Importance="high" />
     <Exec Command="xcopy &quot;$(TargetDir)Logs\*.*&quot; &quot;$(SolutionDir)Logs&quot; /Y /S /I" />
   </Target>
-
-  <!--<Target Name="PostBuild" AfterTargets="PostBuildEvent">
+  
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
     <Exec Command="xcopy &quot;$(TargetDir)Logs\*.*&quot; &quot;$(SolutionDir)Logs&quot; /Y /S /I" />
-  </Target>-->
+  </Target>
   
 </Project>
