@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using System.Xml.Linq;
 
 namespace Opencart.ua.Tools.Reporting
 {
@@ -17,7 +18,12 @@ namespace Opencart.ua.Tools.Reporting
                         <td>{r.Status}</td>
                         <td>{r.Duration:F2}</td>
                         <td>{r.ErrorMessage}</td>
-                        <td><a href={r.ScreenshotPath}>Screenshot</a></td>
+                        <td>
+                            <div class='screenshot-container'>
+                                <img src='{r.ScreenshotPath}' class='screenshot-thumb' alt='screenshot' onclick='openModal(this)' /><br>
+                                <a href='{r.ScreenshotPath}' target='_blank' >Open screenshot in a new tab</a>
+                            </div>  
+                        </td>
                     </tr>");
             }
 
