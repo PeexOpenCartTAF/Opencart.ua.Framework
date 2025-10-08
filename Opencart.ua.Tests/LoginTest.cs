@@ -35,9 +35,13 @@ namespace Opencart.ua.Tests
             get
             {
                 var users = DataBaseHelper.GetAllUsers();
-                foreach (var u in users)
+                foreach (var user in users)
                 {
-                    yield return new object[] { u.Email, u.Password };
+                    yield return new object[] 
+                    {
+                        user.Email,
+                        user.Password 
+                    };
                 }
             }
         }
@@ -97,7 +101,12 @@ namespace Opencart.ua.Tests
             get
             {
                 var wrongUser = DataBaseHelper.GetUserByEmail("wrong@gmail.com");
-                yield return new object[] { wrongUser.Email, wrongUser.Password, "Warning: No match for E-Mail Address and/or Password." };
+                yield return new object[] 
+                { 
+                    wrongUser.Email,
+                    wrongUser.Password,
+                    "Warning: No match for E-Mail Address and/or Password." 
+                };
             }
         }
 
