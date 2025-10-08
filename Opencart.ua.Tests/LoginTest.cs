@@ -3,6 +3,7 @@ using NUnit.Framework;
 using Opencart.ua.PageObjects.Pages.AccountPages;
 using Opencart.ua.Tools.Helpers;
 using Opencart.ua.Tools.LogsHelpers;
+using Opencart.ua.Tools.DBHelpers;
 
 namespace Opencart.ua.Tests
 {
@@ -27,6 +28,36 @@ namespace Opencart.ua.Tests
             StartTimer();
             OpenCartSeriLog.Info("Opening Login page");
             loginPage.NavigateTo(loginPageUrl);
+        }
+
+        private static IEnumerable<object[]> LoginDataFromDb
+        {
+            get
+            {
+                var users = DataBaseHelper.GetAllUsers();
+                foreach (var u in users)
+                {
+                    yield return new object[] { u.Email, u.Password };
+                }
+            }
+        }
+
+        [TestCaseSource(nameof(LoginDataFromDb)), Order(4)]
+        public void CheckLoginDBData(string email, string password)
+        {
+            loginPage.EnterCredsAndLogin(email, password);
+
+            Thread.Sleep(5000);
+            switch (email)
+            {
+                case string wrong when wrong.Contains("wrong"):
+                    Assert.That(!loginPage.IsUserLoggedIn());
+                    break;
+                case string success when success.Contains("ivanytsky"):
+                    Assert.That(loginPage.IsUserLoggedIn());
+                    break;
+            }
+
         }
 
         private static IEnumerable<object[]> LoginData => new[]
@@ -59,6 +90,22 @@ namespace Opencart.ua.Tests
                     break;
             }
 
+        }
+
+        private static IEnumerable<object[]> WrongUserDataFromDb
+        {
+            get
+            {
+                var wrongUser = DataBaseHelper.GetUserByEmail("wrong@gmail.com");
+                yield return new object[] { wrongUser.Email, wrongUser.Password, "Warning: No match for E-Mail Address and/or Password." };
+            }
+        }
+
+        [TestCaseSource(nameof(WrongUserDataFromDb)), Order(3)]
+        public void CheckAlertMessageDBData(string email, string password, string expectedMessage)
+        {
+            loginPage.EnterCredsAndLogin(email, password);
+            Assert.That(loginPage.LoginErrorAlertMessage, Is.EqualTo(expectedMessage));
         }
 
         private static IEnumerable<object[]> WrongUserData => new[]
