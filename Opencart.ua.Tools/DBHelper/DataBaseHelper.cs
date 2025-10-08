@@ -9,19 +9,19 @@ namespace Opencart.ua.Tools.DBHelpers
     public static class DataBaseHelper
     {
         private static readonly string _connectionString =
-            ConfigurationManager.ConnectionStrings["UserDB"].ConnectionString;
+            ConfigurationManager.ConnectionStrings["OpencartDB"].ConnectionString;
 
         public static List<User> GetAllUsers()
         {
             var users = new List<User>();
 
-            using (SqlConnection conn = new SqlConnection(_connectionString))
+            using (SqlConnection connection = new SqlConnection(_connectionString))
             {
-                conn.Open();
+                connection.Open();
                 string sql = "SELECT Id, FirstName, LastName, Email, Password FROM Users";
 
-                using (SqlCommand cmd = new SqlCommand(sql, conn))
-                using (SqlDataReader reader = cmd.ExecuteReader())
+                using (SqlCommand command = new SqlCommand(sql, connection))
+                using (SqlDataReader reader = command.ExecuteReader())
                 {
                     while (reader.Read())
                     {
@@ -43,16 +43,16 @@ namespace Opencart.ua.Tools.DBHelpers
         {
             User user = null;
 
-            using (SqlConnection conn = new SqlConnection(_connectionString))
+            using (SqlConnection connection = new SqlConnection(_connectionString))
             {
-                conn.Open();
+                connection.Open();
                 string sql = "SELECT Id, FirstName, LastName, Email, Password FROM Users WHERE Email = @Email";
 
-                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                using (SqlCommand command = new SqlCommand(sql, connection))
                 {
-                    cmd.Parameters.AddWithValue("@Email", email);
+                    command.Parameters.AddWithValue("@Email", email);
 
-                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    using (SqlDataReader reader = command.ExecuteReader())
                     {
                         if (reader.Read())
                         {
