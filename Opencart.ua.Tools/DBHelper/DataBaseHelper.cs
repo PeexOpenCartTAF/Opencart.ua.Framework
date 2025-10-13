@@ -15,25 +15,23 @@ namespace Opencart.ua.Tools.DBHelpers
         {
             var users = new List<User>();
 
-            using (SqlConnection connection = new SqlConnection(_connectionString))
+            using (SqlConnection connection = new(_connectionString))
             {
                 connection.Open();
                 string sql = "SELECT Id, FirstName, LastName, Email, Password FROM Users";
 
-                using (SqlCommand command = new SqlCommand(sql, connection))
-                using (SqlDataReader reader = command.ExecuteReader())
+                using SqlCommand command = new(sql, connection);
+                using SqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
                 {
-                    while (reader.Read())
+                    users.Add(new User
                     {
-                        users.Add(new User
-                        {
-                            Id = reader.GetInt32(0),
-                            FirstName = reader.GetString(1),
-                            LastName = reader.GetString(2),
-                            Email = reader.GetString(3),
-                            Password = reader.GetString(4)
-                        });
-                    }
+                        Id = reader.GetInt32(0),
+                        FirstName = reader.GetString(1),
+                        LastName = reader.GetString(2),
+                        Email = reader.GetString(3),
+                        Password = reader.GetString(4)
+                    });
                 }
             }
             return users;
@@ -43,29 +41,25 @@ namespace Opencart.ua.Tools.DBHelpers
         {
             User user = null;
 
-            using (SqlConnection connection = new SqlConnection(_connectionString))
+            using (SqlConnection connection = new(_connectionString))
             {
                 connection.Open();
                 string sql = "SELECT Id, FirstName, LastName, Email, Password FROM Users WHERE Email = @Email";
 
-                using (SqlCommand command = new SqlCommand(sql, connection))
-                {
-                    command.Parameters.AddWithValue("@Email", email);
+                using SqlCommand command = new(sql, connection);
+                command.Parameters.AddWithValue("@Email", email);
 
-                    using (SqlDataReader reader = command.ExecuteReader())
+                using SqlDataReader reader = command.ExecuteReader();
+                if (reader.Read())
+                {
+                    user = new User
                     {
-                        if (reader.Read())
-                        {
-                            user = new User
-                            {
-                                Id = reader.GetInt32(0),
-                                FirstName = reader.GetString(1),
-                                LastName = reader.GetString(2),
-                                Email = reader.GetString(3),
-                                Password = reader.GetString(4)
-                            };
-                        }
-                    }
+                        Id = reader.GetInt32(0),
+                        FirstName = reader.GetString(1),
+                        LastName = reader.GetString(2),
+                        Email = reader.GetString(3),
+                        Password = reader.GetString(4)
+                    };
                 }
             }
 
