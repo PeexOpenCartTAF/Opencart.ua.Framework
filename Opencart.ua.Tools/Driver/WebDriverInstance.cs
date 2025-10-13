@@ -2,6 +2,7 @@
 using OpenQA.Selenium;
 using System.Configuration;
 using OpenQA.Selenium.Firefox;
+using OpenQA.Selenium.Interactions;
 
 namespace Opencart.ua.Tools.Driver
 {
@@ -9,6 +10,7 @@ namespace Opencart.ua.Tools.Driver
     {
         private static IWebDriver driver;
         private static readonly string browser = ConfigurationManager.AppSettings["Browser"];
+        private static readonly bool isHeadless = bool.Parse(ConfigurationManager.AppSettings["headless"]);
         private static readonly int implicitWait = int.Parse(ConfigurationManager.AppSettings["ImplicitWait"]);
         private static readonly int pageLoadTimeout = int.Parse(ConfigurationManager.AppSettings["PageLoadTimeout"]);
 
@@ -25,6 +27,12 @@ namespace Opencart.ua.Tools.Driver
                         chromeOptions.AddArgument("--no-sandbox");
                         chromeOptions.AddArgument("--disable-dev-shm-usage");
                         chromeOptions.AddArgument("--disable-gpu");
+                        if (isHeadless)
+                        {
+                            chromeOptions.AddArgument("--headless=new");
+                            chromeOptions.AddArgument("--window-size=1920,1080");
+                        }    
+                            
                         driver = new ChromeDriver(chromeOptions);
                         break;
 
@@ -40,7 +48,7 @@ namespace Opencart.ua.Tools.Driver
                         throw new NotSupportedException($"Browser '{browser}' is not supported.");
                 }
 
-                driver.Manage().Window.Maximize();
+                if (!isHeadless) driver.Manage().Window.Maximize();
                 driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(implicitWait);
                 driver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(pageLoadTimeout);
             }
