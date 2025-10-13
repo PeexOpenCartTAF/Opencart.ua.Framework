@@ -1,5 +1,4 @@
 ﻿using System.Text;
-using System.Xml.Linq;
 
 namespace Opencart.ua.Tools.Reporting
 {
@@ -12,18 +11,24 @@ namespace Opencart.ua.Tools.Reporting
             foreach (var r in results)
             {
                 var css = r.Status.ToLower();
+
+                string screenshotCell = string.IsNullOrEmpty(r.ScreenshotPath)
+                    ? @"<div class='screenshot-container'>
+                            <div class='screenshot-placeholder'>PASS</div>
+                        </div>"
+                    : $@"
+                        <div class='screenshot-container'>
+                            <img src='{r.ScreenshotPath}' class='screenshot-thumb' alt='screenshot' onclick='openModal(this)' /><br>
+                            <a href='{r.ScreenshotPath}' target='_blank'>Open screenshot in a new tab</a>
+                        </div>";
+
                 rows.AppendLine($@"
                     <tr class=""{css}"">
                         <td>{r.TestName}</td>
                         <td>{r.Status}</td>
                         <td>{r.Duration:F2}</td>
                         <td>{r.ErrorMessage}</td>
-                        <td>
-                            <div class='screenshot-container'>
-                                <img src='{r.ScreenshotPath}' class='screenshot-thumb' alt='screenshot' onclick='openModal(this)' /><br>
-                                <a href='{r.ScreenshotPath}' target='_blank' >Open screenshot in a new tab</a>
-                            </div>  
-                        </td>
+                        <td>{screenshotCell}</td>
                     </tr>");
             }
 

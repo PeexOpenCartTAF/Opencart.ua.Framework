@@ -16,7 +16,7 @@
     <PackageReference Include="NUnit" Version="4.2.2" />
     <PackageReference Include="NUnit.ConsoleRunner" Version="3.18.3" />
     <PackageReference Include="NUnit3TestAdapter" Version="4.6.0" />
-    <PackageReference Include="Opencart.ua.Tools" Version="1.0.7" />
+    <PackageReference Include="Opencart.ua.Tools" Version="1.0.8" />
   </ItemGroup>
 
   <ItemGroup>
@@ -40,10 +40,6 @@
   
   <!--<Target Name="CopyLogsAfterBuild" AfterTargets="PostBuildEvent">
     <Message Text="Copying log files to solution root..." Importance="high" />
-    <Exec Command="xcopy &quot;$(TargetDir)Logs\*.*&quot; &quot;$(SolutionDir)Logs&quot; /Y /S /I" />
-  </Target>-->
-  
-  <!--<Target Name="PostBuild" AfterTargets="PostBuildEvent">
     <Exec Command="xcopy &quot;$(TargetDir)Logs\*.*&quot; &quot;$(SolutionDir)Logs&quot; /Y /S /I" />
   </Target>-->
   
