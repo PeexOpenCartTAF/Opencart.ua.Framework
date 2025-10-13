@@ -77,3 +77,18 @@ th {
     font-weight: bold;
     cursor: pointer;
 }
+
+.screenshot-placeholder {
+    width: 120px;
+    height: 59px;
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: #28a745;
+    font-family: Arial Nova, Arial, sans-serif;
+    box-sizing: border-box;
+}
