@@ -19,13 +19,22 @@
     <PackageReference Include="Selenium.Support" Version="4.22.0" />
     <PackageReference Include="Selenium.WebDriver" Version="4.22.0" />
     <PackageReference Include="Selenium.WebDriver.ChromeDriver" Version="141.0.7390.7600" />
-    <PackageReference Include="Opencart.ua.Tools" Version="1.0.3" />
+	<PackageReference Include="Opencart.ua.Tools" Version="1.0.5" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Opencart.ua.Data\Opencart.ua.Data.csproj" />
     <ProjectReference Include="..\Opencart.ua.PageObjects\Opencart.ua.PageObjects.csproj" />
     <!--<ProjectReference Include="..\Opencart.ua.Tools\Opencart.ua.Tools.csproj" />-->
+  </ItemGroup>
+
+  <ItemGroup>
+	<None Update="Reporting\report-style.css">
+	  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	</None>
+	<None Update="Reporting\template.html">
+	  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	</None>
   </ItemGroup>
 
   <Target Name="CopyJsonFile" AfterTargets="Build">

@@ -9,9 +9,9 @@
 		<!-- NuGet package metadata -->
 		<!--<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageId>Opencart.ua.Tools</PackageId>
-		<Version>1.0.3</Version>
+		<Version>1.0.5</Version>
 		<Authors>Yurii Ivanytskyi</Authors>
-		<Company>SoftServe</Company>
+		<Company>OpencartCustomTestProject</Company>
 		<Description>Helper tools for Opencart test automation framework</Description>
 		<PackageTags>selenium;automation;testing;logging;reporting;helpers;opencart</PackageTags>
 		<RepositoryUrl>https://github.com/PeexOpenCartTAF/Opencart.ua.Framework</RepositoryUrl>
@@ -21,15 +21,6 @@
 		<IncludeReferencedProjects>false</IncludeReferencedProjects>-->
 		
 	</PropertyGroup>
-
-	<ItemGroup>
-		<None Update="Reporting\template.html">
-			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-		</None>
-		<None Update="Reporting\report-style.css">
-			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-		</None>
-	</ItemGroup>
 
 	<ItemGroup>
 		<PackageReference Include="log4net" Version="3.0.2" />
