@@ -1,5 +1,4 @@
-﻿using NUnit.Framework;
-using Opencart.ua.Tools.Driver;
+﻿using Opencart.ua.Tools.Driver;
 using Opencart.ua.Tools.LogsHelpers;
 using OpenQA.Selenium;
 
@@ -8,7 +7,7 @@ namespace Opencart.ua.Tools.ScreenshotHelpers
 
     public static class TakeScreenshotHelper
     {
-        public static string TakeScreenshot()
+        public static string TakeScreenshot(string testName)
         {
             try
             {
@@ -16,8 +15,6 @@ namespace Opencart.ua.Tools.ScreenshotHelpers
                 Screenshot screenshot = ((ITakesScreenshot)driver).GetScreenshot();
                 string screenshotsDir = Path.Combine(Directory.GetCurrentDirectory(), "Reporting", "Screenshots");
                 Directory.CreateDirectory(screenshotsDir);
-
-                string testName = TestContext.CurrentContext.Test.MethodName;
                 string fileName = $"{testName}_{DateTime.Now:yyyy-MM-dd_HH-mm-ss}.png";
                 string filePath = Path.Combine(screenshotsDir, fileName);
 
