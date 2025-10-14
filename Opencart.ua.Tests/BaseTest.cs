@@ -31,9 +31,9 @@ namespace Opencart.ua.Tests
         {
             var context = TestContext.CurrentContext;
             //string screenshotPath = TakeScreenshotHelper.TakeScreenshot(context.Test.MethodName);
-            string screenshotPath = 
-                context.Result.Outcome.Status == TestStatus.Failed 
-                ? TakeScreenshotHelper.TakeScreenshot(context.Test.MethodName) 
+            string screenshotPath =
+                context.Result.Outcome.Status == TestStatus.Failed
+                ? TakeScreenshotHelper.TakeScreenshot(context.Test.MethodName)
                 : null;
             stopwatch.Stop();
             results.Add(new TestResult
