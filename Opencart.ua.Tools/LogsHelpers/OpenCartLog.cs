@@ -1,7 +1,5 @@
 ﻿using log4net;
 using log4net.Config;
-using System;
-using System.IO;
 
 public static class OpenCartLog
 {
