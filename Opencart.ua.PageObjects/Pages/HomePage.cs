@@ -1,5 +1,4 @@
 ﻿using Opencart.ua.PageObjects.Components;
-using Opencart.ua.Tools;
 using Opencart.ua.Tools.Driver;
 using Opencart.ua.Tools.Helpers;
 using OpenQA.Selenium;

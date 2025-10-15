@@ -1,6 +1,5 @@
 ﻿using Opencart.ua.PageObjects.Pages;
 using Opencart.ua.Tools.Driver;
-using Opencart.ua.Tools.LogsHelpers;
 using OpenQA.Selenium;
 
 namespace Opencart.ua.PageObjects.Components

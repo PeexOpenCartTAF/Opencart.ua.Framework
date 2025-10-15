@@ -2,7 +2,6 @@
 using OpenQA.Selenium;
 using System.Configuration;
 using OpenQA.Selenium.Firefox;
-using OpenQA.Selenium.Interactions;
 
 namespace Opencart.ua.Tools.Driver
 {

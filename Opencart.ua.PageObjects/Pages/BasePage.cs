@@ -1,7 +1,6 @@
 ﻿using Opencart.ua.Tools.Driver;
 using Opencart.ua.Tools.LogsHelpers;
 using OpenQA.Selenium;
-using System.Security.Policy;
 
 namespace Opencart.ua.PageObjects.Pages
 {
