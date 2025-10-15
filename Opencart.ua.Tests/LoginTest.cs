@@ -51,7 +51,6 @@ namespace Opencart.ua.Tests
         {
             loginPage.EnterCredsAndLogin(email, password);
 
-            Thread.Sleep(5000);
             switch (email)
             {
                 case string wrong when wrong.Contains("wrong"):
@@ -83,7 +82,6 @@ namespace Opencart.ua.Tests
         {
             loginPage.EnterCredsAndLogin(email, password);
 
-            Thread.Sleep(5000);
             switch (email)
             {
                 case string wrong when wrong.Contains("wrong"):
