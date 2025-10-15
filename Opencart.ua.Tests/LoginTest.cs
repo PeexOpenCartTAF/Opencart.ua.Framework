@@ -50,6 +50,7 @@ namespace Opencart.ua.Tests
         public void CheckLoginDBData(string email, string password)
         {
             loginPage.EnterCredsAndLogin(email, password);
+            loginPage.WaitForPageToLoad();
 
             switch (email)
             {
@@ -81,6 +82,7 @@ namespace Opencart.ua.Tests
         public void CheckLogin(string email, string password)
         {
             loginPage.EnterCredsAndLogin(email, password);
+            loginPage.WaitForPageToLoad();
 
             switch (email)
             {
