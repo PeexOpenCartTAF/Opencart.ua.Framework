@@ -19,6 +19,12 @@ namespace Opencart.ua.PageObjects.Pages
             _driver.OpenUrl(Url);
         }
 
+        public void WaitForPageToLoad()
+        {
+            OpenCartSeriLog.Debug("Waiting for page to load");
+            _driver.WaitForPageToLoad();
+        }
+
         public string GetCurrentUrl()
         {
             OpenCartSeriLog.Debug("Getting current URL");

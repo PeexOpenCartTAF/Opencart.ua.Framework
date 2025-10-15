@@ -1,6 +1,7 @@
 ﻿using Opencart.ua.Tools.LogsHelpers;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
+using OpenQA.Selenium.Support.UI;
 
 namespace Opencart.ua.Tools.Driver
 {
@@ -8,6 +9,7 @@ namespace Opencart.ua.Tools.Driver
     {
         void OpenUrl(string url);
         string GetUrl();
+        void WaitForPageToLoad();
         IWebElement FindWebElement(By by);
         IEnumerable<IWebElement> FindWebElements(By by);
         void MoveToElement(IWebElement element);
@@ -47,6 +49,30 @@ namespace Opencart.ua.Tools.Driver
         public string GetUrl()
         {
             return driver.Url;
+        }
+
+        public void WaitForPageToLoad()
+        {
+            try
+            {
+                new WebDriverWait(driver, driver.Manage().Timeouts().PageLoad)
+                    .Until(d =>
+                    {
+                        var jsExecutor = (IJavaScriptExecutor)d;
+                        bool isDocumentReady = jsExecutor
+                            .ExecuteScript("return document.readyState").ToString() == "complete";
+                        bool isAjaxComplete = true;
+                        try { isAjaxComplete = (bool)jsExecutor
+                             .ExecuteScript("return (window.jQuery != undefined) ? jQuery.active == 0 : true;"); } catch { }
+                        return isDocumentReady && isAjaxComplete;
+                    });
+
+                OpenCartSeriLog.Debug("Page load complete");
+            }
+            catch (WebDriverTimeoutException ex)
+            {
+                OpenCartSeriLog.Error($"Page load wait failed: {ex.Message}");
+            }
         }
 
         public IWebElement FindWebElement(By by)
