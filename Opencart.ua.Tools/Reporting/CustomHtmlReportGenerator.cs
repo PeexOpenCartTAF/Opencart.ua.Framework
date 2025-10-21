@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using Opencart.ua.Tools.LogsHelpers;
+using System.Text;
 
 namespace Opencart.ua.Tools.Reporting
 {
@@ -6,6 +7,8 @@ namespace Opencart.ua.Tools.Reporting
     {
         public static void Generate(List<TestResult> results, string outputPath)
         {
+            OpenCartSeriLog.Debug("Preparing Report...");
+
             var rows = new StringBuilder();
 
             foreach (var r in results)
@@ -36,6 +39,8 @@ namespace Opencart.ua.Tools.Reporting
             html = html.Replace("{{rows}}", rows.ToString());
 
             File.WriteAllText(outputPath, html);
+
+            OpenCartSeriLog.Debug($"Report saved at {outputPath}");
         }
     }
 }
