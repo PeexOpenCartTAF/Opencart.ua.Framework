@@ -4,6 +4,7 @@ using Opencart.ua.PageObjects.Pages.AccountPages;
 using Opencart.ua.Tools.Helpers;
 using Opencart.ua.Tools.LogsHelpers;
 using Opencart.ua.Tools.DBHelpers;
+using System.Threading;
 
 namespace Opencart.ua.Tests
 {
@@ -28,6 +29,7 @@ namespace Opencart.ua.Tests
             StartTimer();
             OpenCartSeriLog.Info("Opening Login page");
             loginPage.NavigateTo(loginPageUrl);
+            Thread.Sleep(20000);
         }
 
         private static IEnumerable<object[]> LoginDataFromDb
