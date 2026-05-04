@@ -5,7 +5,7 @@ using OpenQA.Selenium;
 
 namespace Opencart.ua.PageObjects.Pages.AccountPages
 {
-    [Url("/en-gb?route=account/login")]
+    [Url("/index.php?route=account/login")]
     public class LoginPage : BasePage
     {
         private readonly IRightMenuComponent rightMenu;
