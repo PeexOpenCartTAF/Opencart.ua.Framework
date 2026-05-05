@@ -21,11 +21,11 @@ namespace Opencart.ua.Tools.Driver
         private readonly IWebDriver driver;
         public WebDriverWrapper()
         {
-            OpenCartSeriLog.Debug("Preparing Chrome driver");
+            OpenCartSeriLog.Debug("Preparing Web driver...");
             try
             {
                 driver = WebDriverInstance.GetDriver();
-                OpenCartSeriLog.Debug("Chrome instance is created");
+                OpenCartSeriLog.Debug("Web driver instance is created");
             }
             catch (DriveNotFoundException exception) 
             {
