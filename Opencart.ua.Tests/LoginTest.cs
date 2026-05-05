@@ -4,7 +4,6 @@ using Opencart.ua.PageObjects.Pages.AccountPages;
 using Opencart.ua.Tools.Helpers;
 using Opencart.ua.Tools.LogsHelpers;
 using Opencart.ua.Tools.DBHelpers;
-using System.Threading;
 
 namespace Opencart.ua.Tests
 {
@@ -29,7 +28,6 @@ namespace Opencart.ua.Tests
             StartTimer();
             OpenCartSeriLog.Info("Opening Login page");
             loginPage.NavigateTo(loginPageUrl);
-            Thread.Sleep(20000);
         }
 
         private static IEnumerable<object[]> LoginDataFromDb
@@ -95,7 +93,6 @@ namespace Opencart.ua.Tests
                     Assert.That(loginPage.IsUserLoggedIn());
                     break;
             }
-
         }
 
         private static IEnumerable<object[]> WrongUserDataFromDb
@@ -107,7 +104,8 @@ namespace Opencart.ua.Tests
                 { 
                     wrongUser.Email,
                     wrongUser.Password,
-                    "Warning: No match for E-Mail Address and/or Password." 
+                    "E-Mail і/чи пароль не співпадають."
+                    //"Warning: Your account has exceeded allowed number of login attempts. Please try again in 1 hour."
                 };
             }
         }
@@ -125,7 +123,9 @@ namespace Opencart.ua.Tests
             {
                 JsonData.GetJsonData().Users.WrongUser.Email,
                 JsonData.GetJsonData().Users.WrongUser.Password,
-                "Warning: No match for E-Mail Address and/or Password."
+                "E-Mail і/чи пароль не співпадають."
+                //"Warning: Your account has exceeded allowed number of login attempts. Please try again in 1 hour."
+
             }
         };
 
@@ -139,6 +139,7 @@ namespace Opencart.ua.Tests
         [TearDown]
         public void TearDown()
         {
+            loginPage.Logout();
             CollectResults();
         }
 
