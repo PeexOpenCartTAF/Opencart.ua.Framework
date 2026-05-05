@@ -37,7 +37,7 @@ namespace Opencart.ua.PageObjects.Components
 
         public IWebElement GetMenuItem(MenuItems menuItem)
         {
-            return FindElement(By.XPath($"//a[contains(@href, 'account/{menuItem.ToString().ToLower()}')]"));
+            return FindElement(By.XPath($"//div/a[contains(@href, 'account/{menuItem.ToString().ToLower()}')]"));
         }
 
         public void ClickOnMenuItem(MenuItems menuItem)
