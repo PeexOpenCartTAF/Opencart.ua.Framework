@@ -16,13 +16,13 @@
     <PackageReference Include="NUnit" Version="4.6.0" />
     <PackageReference Include="NUnit.ConsoleRunner" Version="3.22.0" />
     <PackageReference Include="NUnit3TestAdapter" Version="6.2.0" />
-    <PackageReference Include="Opencart.ua.Tools" Version="1.0.15" />
+    <!--<PackageReference Include="Opencart.ua.Tools" Version="1.0.13" />-->
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Opencart.ua.Data\Opencart.ua.Data.csproj" />
     <ProjectReference Include="..\Opencart.ua.PageObjects\Opencart.ua.PageObjects.csproj" />
-    <!--<ProjectReference Include="..\Opencart.ua.Tools\Opencart.ua.Tools.csproj" />-->
+    <ProjectReference Include="..\Opencart.ua.Tools\Opencart.ua.Tools.csproj" />
   </ItemGroup>
 
   <ItemGroup>
