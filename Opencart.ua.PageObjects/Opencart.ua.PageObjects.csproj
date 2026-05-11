@@ -8,8 +8,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Opencart.ua.Tools" Version="1.0.15" />
-	<!--<ProjectReference Include="..\Opencart.ua.Tools\Opencart.ua.Tools.csproj" />-->
+    <!--<PackageReference Include="Opencart.ua.Tools" Version="1.0.13" />-->
+	<ProjectReference Include="..\Opencart.ua.Tools\Opencart.ua.Tools.csproj" />
   </ItemGroup>
 
 </Project>
