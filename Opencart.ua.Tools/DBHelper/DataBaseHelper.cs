@@ -1,67 +1,54 @@
-﻿using System.Configuration;
-using System.Data.SqlClient;
+﻿using System.Data.SqlClient;
 
 namespace Opencart.ua.Tools.DBHelpers
 {
     public static class DataBaseHelper
     {
-        private static readonly string _connectionString =
-            ConfigurationManager.ConnectionStrings["OpencartDB"].ConnectionString;
-
         public static List<User> GetAllUsers()
         {
             var users = new List<User>();
 
-            using (SqlConnection connection = new(_connectionString))
-            {
-                connection.Open();
-                string sql = "SELECT Id, FirstName, LastName, Email, Password FROM Users";
+            using var connection = DbConnectionFactory.CreateSqlConnection();
+            connection.Open();
 
-                using SqlCommand command = new(sql, connection);
-                using SqlDataReader reader = command.ExecuteReader();
-                while (reader.Read())
-                {
-                    users.Add(new User
-                    {
-                        Id = reader.GetInt32(0),
-                        FirstName = reader.GetString(1),
-                        LastName = reader.GetString(2),
-                        Email = reader.GetString(3),
-                        Password = reader.GetString(4)
-                    });
-                }
+            string sql = "SELECT Id, FirstName, LastName, Email, Password FROM Users";
+
+            using SqlCommand command = new(sql, connection);
+            using SqlDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                users.Add(MapUser(reader));
             }
             return users;
         }
 
         public static User GetUserByEmail(string email)
         {
-            User user = null;
+            using var connection = DbConnectionFactory.CreateSqlConnection();
+            connection.Open();
 
-            using (SqlConnection connection = new(_connectionString))
-            {
-                connection.Open();
-                string sql = "SELECT Id, FirstName, LastName, Email, Password FROM Users WHERE Email = @Email";
+            string sql = "SELECT Id, FirstName, LastName, Email, Password FROM Users WHERE Email = @Email";
 
-                using SqlCommand command = new(sql, connection);
-                command.Parameters.AddWithValue("@Email", email);
+            using SqlCommand command = new(sql, connection);
+            command.Parameters.AddWithValue("@Email", email);
+            
+            using SqlDataReader reader = command.ExecuteReader();
 
-                using SqlDataReader reader = command.ExecuteReader();
-                if (reader.Read())
-                {
-                    user = new User
-                    {
-                        Id = reader.GetInt32(0),
-                        FirstName = reader.GetString(1),
-                        LastName = reader.GetString(2),
-                        Email = reader.GetString(3),
-                        Password = reader.GetString(4)
-                    };
-                }
-            }
-
-            return user;
+            return reader.Read() ? MapUser(reader) : null;
         }
+
+        private static User MapUser(SqlDataReader reader)
+        {
+            return new User
+            {
+                Id = reader.GetInt32(0),
+                FirstName = reader.GetString(1),
+                LastName = reader.GetString(2),
+                Email = reader.GetString(3),
+                Password = reader.GetString(4)
+            };
+        }
+
     }
 
     public class User
